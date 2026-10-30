@@ -24,6 +24,7 @@ call:buildPatchSection src\KHV\17489_XDKBuild khv_vfuses_jtag
 
 call:buildPatchSection src\KHV\15574_XDKBuild khv_vfuses_flash
 call:buildPatchSection src\KHV\15574_XDKBuild khv_vfuses_sb
+call:buildPatchSection src\KHV\15574_RGLoader khv_vfuses_sb
 
 call:buildPatchSection src\KHV\15513_XDKBuild khv_vfuses_flash
 call:buildPatchSection src\KHV\15513_XDKBuild khv_vfuses_sb
@@ -285,6 +286,17 @@ copy /b src\2BL\14352\sb_vfuses.bin + src\4BL\17489\sd_vfuses_sb.bin + src\KHV\1
 copy output\15574_XDKBuild\patches_devjasper.bin output\15574_XDKBuild\patches_devxenon.bin
 copy output\15574_XDKBuild\patches_devjasper.bin output\15574_XDKBuild\patches_devzephyr.bin
 copy output\15574_XDKBuild\patches_devjasper.bin output\15574_XDKBuild\patches_devfalcon.bin
+
+echo 15574 RGLoader...
+
+mkdir output\15574_RGLoader
+
+REM *** 15574 RGLoader: same chain as 15574_XDKBuild / 17489_RGLoader (SB 14352 + SD 17489), only the KHV set differs
+copy /b src\2BL\14352\sb_vfuses.bin + src\4BL\17489\sd_vfuses_sb.bin + src\KHV\15574_RGLoader\khv_vfuses_sb.bin output\15574_RGLoader\patches_g2mxenon.bin
+copy output\15574_RGLoader\patches_g2mxenon.bin output\15574_RGLoader\patches_g2mxenon_ELPIS.bin
+copy output\15574_RGLoader\patches_g2mxenon.bin output\15574_RGLoader\patches_g2mzephyr.bin
+copy output\15574_RGLoader\patches_g2mxenon.bin output\15574_RGLoader\patches_g2mfalcon.bin
+copy output\15574_RGLoader\patches_g2mxenon.bin output\15574_RGLoader\patches_g2mjasper.bin
 
 echo 15513 XDKBuild...
 
